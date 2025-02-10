@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .task-form {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Same header -->
+    </header>
+
+    <main>
+        <form class="task-form" id="taskForm">
+            <h2>Post Your Task</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Task Title</label>
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" required>
+                        <option>Virtual Assistance</option>
+                        <option>Creative Work</option>
+                        <option>Technical Tasks</option>
+                    </select>
+                </div>
+                <!-- Add more form fields -->
+            </div>
+            <button type="submit" class="post-task-btn">Publish Task</button>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('taskForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // Connect to backend API
+            const response = await fetch('/api/tasks', {
+                method: 'POST',
+                body: new FormData(e.target)
+            });
+            // Handle response
+        });
+    </script>
+</body>
+</html>
